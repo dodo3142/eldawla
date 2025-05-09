@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History - Eldawla</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <script src="bookings.js"></script>
+    
+    <script src="email-service.js"></script>
+    
+    
+    <style>
+        .history-container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        
+        .history-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .history-header h1 {
+            margin-bottom: 15px;
+            color: var(--heading-color);
+        }
+        
+        .history-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        .booking-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .booking-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .booking-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .booking-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+        
+        .booking-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .status-confirmed {
+            background-color: #e6f7ee;
+            color: #0c6b3d;
+        }
+        
+        .status-completed {
+            background-color: #e6f0f7;
+            color: #0c4b6b;
+        }
+        
+        .status-cancelled {
+            background-color: #f7e6e6;
+            color: #6b0c0c;
+        }
+        
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .booking-detail {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .booking-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .no-bookings {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text-muted);
+        }
+        
+        .login-required {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .loading-message {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+        
+        .loading-message i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eldawla</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="history.html" class="active">History</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="history-container">
+            <div class="history-header">
+                <h1>Your Booking History</h1>
+                <p>View and manage all your past and upcoming bookings</p>
+            </div>
+            
+            <div class="history-content">
+                <div id="login-required" class="login-required" style="display: none;">
+                    <h2>Login Required</h2>
+                    <p>Please login to view your booking history.</p>
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                </div>
+                
+                <div id="booking-history-content" style="display: none;">
+                    <div id="no-bookings" class="no-bookings" style="display: none;">
+                        <i class="fas fa-calendar-times fa-3x" style="margin-bottom: 20px;"></i>
+                        <h2>No Bookings Found</h2>
+                        <p>You haven't made any bookings yet.</p>
+                        <a href="rooms.html" class="btn btn-primary">Browse Rooms</a>
+                    </div>
+                    
+                    <ul id="booking-list" class="booking-list">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Eldawla</h3>
+                <p>A community marketplace connecting travelers with local hosts offering unique places to stay throughout Egypt.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Browse Rooms</a></li>
+                    <li><a href="become-host.html">Become a Host</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@eldawla.com</p>
+                <p>Phone: +20 (102) 123-4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Eldawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="theme-switch-wrapper">
+        <span class="theme-icon"><i class="fas fa-sun"></i></span>
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox">
+            <div class="slider"></div>
+        </label>
+        <span class="theme-icon"><i class="fas fa-moon"></i></span>
+    </div>
+
+    <script>
+
+        function calculateNights(checkInDate, checkOutDate) {
+            const checkIn = new Date(checkInDate);
+            const checkOut = new Date(checkOutDate);
+            return Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+        }
+        
+
+        function formatBookingDate(dateString) {
+            try {
+                const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString('en-US', options);
+            } catch (error) {
+                console.error(error);
+                return 'N/A';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+
+            try {
+                initEmailService();
+                console.log('EmailJS initialized');
+            } catch (error) {
+                console.error('Error initializing EmailJS:', error);
+            }
+            
+
+            const loginRequired = document.getElementById('login-required');
+            const bookingHistoryContent = document.getElementById('booking-history-content');
+            const noBookings = document.getElementById('no-bookings');
+            const bookingList = document.getElementById('booking-list');
+            
+            console.log('Checking login status...');
+            const isUserLoggedIn = isLoggedIn();
+            console.log('Is logged in:', isUserLoggedIn);
+            
+            if (isUserLoggedIn) {
+                const currentUser = getCurrentUser();
+                console.log('Current user:', currentUser);
+                
+
+                loginRequired.style.display = 'none';
+                bookingHistoryContent.style.display = 'block';
+                
+
+                const bookingsKey = `bookings_${currentUser.id}`;
+                const bookingsJson = localStorage.getItem(bookingsKey);
+                console.log('Bookings JSON:', bookingsJson);
+                
+                let userBookings = [];
+                if (bookingsJson) {
+                    try {
+                        userBookings = JSON.parse(bookingsJson);
+                        console.log('User bookings:', userBookings);
+                    } catch (error) {
+                        console.error('Error parsing bookings JSON:', error);
+                    }
+                }
+                
+
+                if (userBookings && userBookings.length > 0) {
+
+                    noBookings.style.display = 'none';
+                    
+
+                    bookingList.innerHTML = '';
+                    
+
+                    userBookings.forEach(booking => {
+                        console.log('Processing booking:', booking);
+                        
+                        const bookingItem = document.createElement('li');
+                        bookingItem.className = 'booking-item';
+                        
+
+                        const roomName = booking.roomName || 'Unknown Room';
+                        const checkIn = booking.checkIn || 'N/A';
+                        const checkOut = booking.checkOut || 'N/A';
+                        const guests = booking.guests || 1;
+                        const totalPrice = booking.totalPrice || '$0';
+                        const bookingDate = booking.bookingDate || 'N/A';
+                        const status = booking.status || 'confirmed';
+                        const roomId = booking.roomId || '1';
+                        
+
+                        const formattedCheckIn = formatBookingDate(checkIn);
+                        const formattedCheckOut = formatBookingDate(checkOut);
+                        const formattedBookingDate = formatBookingDate(bookingDate);
+                        
+
+                        let nights = 0;
+                        try {
+                            nights = calculateNights(checkIn, checkOut);
+                        } catch (error) {
+                            console.error('Error calculating nights:', error);
+                        }
+                        
+                        bookingItem.innerHTML = `
+                            <div class="booking-header">
+                                <div class="booking-title">Booking #${booking.id}</div>
+                                <div class="booking-status status-${status}">${status.charAt(0).toUpperCase() + status.slice(1)}</div>
+                            </div>
+                            <div class="booking-details">
+                                <div class="booking-detail">
+                                    <span class="detail-label">Room</span>
+                                    <span class="detail-value">${roomName}</span>
+                                </div>
+                                <div class="booking-detail">
+                                    <span class="detail-label">Check-in</span>
+                                    <span class="detail-value">${formattedCheckIn}</span>
+                                </div>
+                                <div class="booking-detail">
+                                    <span class="detail-label">Check-out</span>
+                                    <span class="detail-value">${formattedCheckOut}</span>
+                                </div>
+                                <div class="booking-detail">
+                                    <span class="detail-label">Guests</span>
+                                    <span class="detail-value">${guests}</span>
+                                </div>
+                                <div class="booking-detail">
+                                    <span class="detail-label">Nights</span>
+                                    <span class="detail-value">${nights}</span>
+                                </div>
+                                <div class="booking-detail">
+                                    <span class="detail-label">Total Price</span>
+                                    <span class="detail-value">${totalPrice}</span>
+                                </div>
+                                <div class="booking-detail">
+                                    <span class="detail-label">Booked On</span>
+                                    <span class="detail-value">${formattedBookingDate}</span>
+                                </div>
+                            </div>
+                            <div class="booking-actions">
+                                <a href="book-room.html?id=${roomId}" class="btn">View Room</a>
+                                ${status === 'confirmed' ? `<button class="btn btn-secondary cancel-booking" data-booking-id="${booking.id}">Cancel Booking</button>` : ''}
+                            </div>
+                        `;
+                        
+                        bookingList.appendChild(bookingItem);
+                    });
+                    
+
+                    document.querySelectorAll('.cancel-booking').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const bookingId = this.getAttribute('data-booking-id');
+                            if (confirm('Are you sure you want to cancel this booking?')) {
+
+                                const originalText = this.innerHTML;
+                                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cancelling...';
+                                this.disabled = true;
+                                
+                                try {
+
+                                    const user = getCurrentUser();
+                                    
+
+                                    const bookingsKey = `bookings_${user.id}`;
+                                    let bookings = JSON.parse(localStorage.getItem(bookingsKey) || '[]');
+                                    
+
+                                    const bookingIndex = bookings.findIndex(b => b.id === bookingId);
+                                    if (bookingIndex === -1) {
+                                        throw new Error('Booking not found');
+                                    }
+                                    
+
+                                    const bookingData = bookings[bookingIndex];
+                                    console.log('Cancelling booking:', bookingData);
+                                    
+
+                                    bookings.splice(bookingIndex, 1);
+                                    
+
+                                    localStorage.setItem(bookingsKey, JSON.stringify(bookings));
+                                    
+
+                                    try {
+                                        sendBookingCancellationEmail(bookingData)
+                                            .then(emailSent => {
+                                                console.log('Cancellation email status:', emailSent ? 'Sent successfully' : 'Failed to send');
+                                            })
+                                            .catch(error => {
+                                                console.error('Error sending cancellation email:', error);
+                                            });
+                                    } catch (emailError) {
+                                        console.error('Error sending cancellation email:', emailError);
+                                    }
+                                    
+                                    alert('Booking cancelled successfully!');
+                                    window.location.reload();
+                                } catch (error) {
+                                    console.error('Error cancelling booking:', error);
+                                    alert('Failed to cancel booking: ' + error.message);
+                                    
+
+                                    this.innerHTML = originalText;
+                                    this.disabled = false;
+                                }
+                            }
+                        });
+                    });
+                } else {
+
+                    noBookings.style.display = 'block';
+                }
+            } else {
+
+                loginRequired.style.display = 'block';
+                bookingHistoryContent.style.display = 'none';
+            }
+            
+
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem("theme");
+            
+            if (currentTheme === "dark" || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.getElementById("checkbox").checked = true;
+            }
+            
+            const themeSwitch = document.getElementById("checkbox");
+            themeSwitch.addEventListener("change", function(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "light");
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

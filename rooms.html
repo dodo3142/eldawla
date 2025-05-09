@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Listings - Eldawla</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <style>
+        .improved-filters {
+            padding: 30px 20px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: flex-end;
+        }
+        
+        .filter-title {
+            width: 100%;
+            margin-bottom: 10px;
+            color: var(--heading-color);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-title i {
+            color: var(--primary-color);
+        }
+        
+        .filter-group {
+            flex: 1 1 200px;
+            margin-bottom: 0;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            appearance: none;
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: relative;
+            height: 20px;
+            width: 20px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: var(--primary-color);
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark:after {
+            content: "";
+            position: absolute;
+            display: block;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .filter-button {
+            min-width: 120px;
+            height: 45px;
+            align-self: flex-end;
+        }
+        
+        @media (max-width: 768px) {
+            .filter-group {
+                flex: 1 1 100%;
+            }
+            
+            .filter-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eldawla</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html" class="active">Rooms</a></li>
+                <li><a href="history.html">History</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero rooms-hero">
+            <div class="hero-content">
+                <h1>Discover Unique Places to Stay</h1>
+                <p>Browse listings from hosts around Egypt</p>
+            </div>
+        </section>
+
+        <section class="improved-filters">
+            <div class="filter-container">
+                <div class="filter-title">
+                    <i class="fas fa-filter"></i>
+                    <h3>Find Your Perfect Match</h3>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="price-range">Price Range</label>
+                    <select id="price-range">
+                        <option value="all">All Prices</option>
+                        <option value="budget">Budget ($0-$100)</option>
+                        <option value="mid">Mid-range ($100-$200)</option>
+                        <option value="luxury">Luxury ($200+)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="room-type">Space Type</label>
+                    <select id="room-type">
+                        <option value="all">All Types</option>
+                        <option value="standard">Standard</option>
+                        <option value="suite">Suite</option>
+                        <option value="budget">Budget</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Amenities</label>
+                    <div class="checkbox-container">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="amenities" value="wifi">
+                            <span class="checkmark"></span>
+                            Wi-Fi
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="amenities" value="breakfast">
+                            <span class="checkmark"></span>
+                            Breakfast
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="amenities" value="air-conditioning">
+                            <span class="checkmark"></span>
+                            Air Conditioning
+                        </label>
+                    </div>
+                </div>
+                
+                <button id="apply-filters" class="btn btn-primary filter-button">Apply Filters</button>
+            </div>
+        </section>
+
+        <section class="popular-rooms">
+            <h2>Available Listings</h2>
+            <div class="rooms-container" id="rooms-container">
+                
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading listings...</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="host-cta">
+            <div class="host-cta-content">
+                <h2>Have a Space to Share?</h2>
+                <p>Join our community of hosts and earn extra income by sharing your space with travelers from around the world.</p>
+                <a href="become-host.html" class="btn btn-primary">Become a Host</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Eldawla</h3>
+                <p>A community marketplace connecting travelers with local hosts offering unique places to stay throughout Egypt.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Browse Rooms</a></li>
+                    <li><a href="become-host.html">Become a Host</a></li>
+                    <li><a href="history.html">History</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Email: hosts@eldawla.com</p>
+                <p>Phone: +20 (102) 123-4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Eldawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="theme-switch-wrapper">
+        <span class="theme-icon"><i class="fas fa-sun"></i></span>
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox">
+            <div class="slider"></div>
+        </label>
+        <span class="theme-icon"><i class="fas fa-moon"></i></span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roomsContainer = document.getElementById('rooms-container');
+            const priceFilter = document.getElementById('price-range');
+            const typeFilter = document.getElementById('room-type');
+            const amenityCheckboxes = document.querySelectorAll('input[name="amenities"]');
+            const applyFiltersBtn = document.getElementById('apply-filters');
+            let allRooms = [];
+
+                .then(response => response.json())
+                .then(data => {
+                    allRooms = data.rooms;
+                    displayRooms(allRooms);
+
+                    applyFiltersBtn.addEventListener('click', filterRooms);
+                })
+                .catch(error => {
+                    console.error('Error loading rooms:', error);
+                    roomsContainer.innerHTML = '<p>Error loading listings. Please try again later.</p>';
+                });
+
+            function displayRooms(rooms) {
+                roomsContainer.innerHTML = '';
+                
+                if (rooms.length === 0) {
+                    roomsContainer.innerHTML = '<p>No listings match your criteria. Please try different filters.</p>';
+                    return;
+                }
+                
+                rooms.forEach(room => {
+                    const roomCard = createRoomCard(room);
+                    roomsContainer.appendChild(roomCard);
+                });
+            }
+            
+            function getStarRating(rating) {
+                const fullStars = Math.floor(rating);
+                const hasHalfStar = rating % 1 >= 0.5;
+                let starsHTML = '';
+                
+                for (let i = 0; i < fullStars; i++) {
+                    starsHTML += '<i class="fas fa-star"></i>';
+                }
+                
+                if (hasHalfStar) {
+                    starsHTML += '<i class="fas fa-star-half-alt"></i>';
+                }
+                
+                const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+                for (let i = 0; i < remainingStars; i++) {
+                    starsHTML += '<i class="far fa-star"></i>';
+                }
+                
+                return starsHTML;
+            }
+
+            function filterRooms() {
+                const priceValue = priceFilter.value;
+                const typeValue = typeFilter.value;
+                const selectedAmenities = Array.from(amenityCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+                
+                const filteredRooms = allRooms.filter(room => {
+                    if (priceValue !== 'all') {
+                        if (priceValue === 'budget' && room.price > 100) return false;
+                        if (priceValue === 'mid' && (room.price < 100 || room.price > 200)) return false;
+                        if (priceValue === 'luxury' && room.price < 200) return false;
+                    }
+                    
+                    if (typeValue !== 'all' && room.type !== typeValue) return false;
+                    
+                    if (selectedAmenities.length > 0) {
+                        const roomAmenityNames = room.amenities.map(a => {
+                            if (a.name.toLowerCase().includes('wi-fi')) return 'wifi';
+                            if (a.name.toLowerCase().includes('breakfast')) return 'breakfast';
+                            if (a.name.toLowerCase().includes('air conditioning')) return 'air-conditioning';
+                            return '';
+                        });
+                        
+                        return selectedAmenities.every(amenity => roomAmenityNames.includes(amenity));
+                    }
+                    
+                    return true;
+                });
+                
+                displayRooms(filteredRooms);
+                document.querySelector('.popular-rooms').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem("theme");
+            
+            if (currentTheme === "dark" || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.getElementById("checkbox").checked = true;
+            }
+            
+            const themeSwitch = document.getElementById("checkbox");
+            themeSwitch.addEventListener("change", function(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "light");
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        });
+
+        function createRoomCard(room) {
+            let amenitiesHTML = '';
+            const displayedAmenities = room.amenities.slice(0, 3);
+            displayedAmenities.forEach(amenity => {
+                amenitiesHTML += `<span><i class="${amenity.icon}"></i> ${amenity.name}</span>`;
+            });
+            
+            let ratingHTML = '';
+            const fullStars = Math.floor(room.rating);
+            const hasHalfStar = room.rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                ratingHTML += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                ratingHTML += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const card = document.createElement('div');
+            card.className = 'room-card';
+            card.innerHTML = `
+                <img src="${room.image}" alt="${room.name}">
+                <div class="room-info">
+                    <h3>${room.name}</h3>
+                    <div class="room-meta">
+                        <p class="room-location"><i class="fas fa-map-marker-alt"></i> ${room.location}</p>
+                        <p class="room-rating">${ratingHTML} <span>(${room.rating})</span></p>
+                    </div>
+                    <p class="price">${room.currency}${room.price}<span>/night</span></p>
+                    <div class="room-amenities">
+                        ${amenitiesHTML}
+                    </div>
+                    <a href="book-room.html?id=${room.id}" class="btn">View Details</a>
+                </div>
+            `;
+            
+            return card;
+        }
+    </script>
+</body>
+</html> 

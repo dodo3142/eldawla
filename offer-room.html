@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer a Room - Eldawla</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <style>
+        .offer-hero {
+            min-height: 400px;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .offer-form-section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .offer-form-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / 3;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-item input {
+            margin-right: 8px;
+        }
+        
+        .image-upload {
+            border: 2px dashed var(--border-color);
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .image-upload:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(var(--primary-rgb), 0.05);
+        }
+        
+        .image-upload i {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        
+        .image-upload p {
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+        
+        .image-upload input {
+            display: none;
+        }
+        
+        .image-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .image-preview {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .login-required {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .login-required h3 {
+            margin-bottom: 15px;
+        }
+        
+        .success-color {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eldawla</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="offer-room.html" class="active">Offer a Room</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li id="auth-links">
+                    <a href="signup.html" id="signup-link">Sign Up</a>
+                    <a href="login.html" id="login-link">Login</a>
+                    <a href="#" id="logout-link" style="display: none;">Logout</a>
+                </li>
+            </ul>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero offer-hero">
+            <div class="hero-content">
+                <h1>Offer Your Room</h1>
+                <p>List your space on Eldawla and start earning income today</p>
+            </div>
+        </section>
+
+        <section id="offer-form" class="offer-form-section">
+            <div class="offer-form-container">
+                <h2>Add Your Room Details</h2>
+                
+                <div id="login-required" class="login-required" style="display: none;">
+                    <h3>Please Log In First</h3>
+                    <p>You need to be logged in to offer a room.</p>
+                    <a href="login.html" class="btn btn-primary">Log In</a>
+                </div>
+                
+                <form id="room-form" class="form-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="room-name">Room Name/Title</label>
+                        <input type="text" id="room-name" required placeholder="e.g. Cozy Studio in Downtown Cairo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="room-type">Room Type</label>
+                        <select id="room-type" required>
+                            <option value="">Select room type</option>
+                            <option value="standard">Standard Room</option>
+                            <option value="deluxe">Deluxe Room</option>
+                            <option value="suite">Suite</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" required placeholder="e.g. Cairo, Egypt">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price">Price per Night ($)</label>
+                        <input type="number" id="price" required min="1" step="1" placeholder="e.g. 100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="capacity">Max Guests</label>
+                        <select id="capacity" required>
+                            <option value="">Select capacity</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6+ Guests</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select id="bedrooms" required>
+                            <option value="">Select number</option>
+                            <option value="1">1 Bedroom</option>
+                            <option value="2">2 Bedrooms</option>
+                            <option value="3">3 Bedrooms</option>
+                            <option value="4">4+ Bedrooms</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <select id="bathrooms" required>
+                            <option value="">Select number</option>
+                            <option value="1">1 Bathroom</option>
+                            <option value="2">2 Bathrooms</option>
+                            <option value="3">3 Bathrooms</option>
+                            <option value="4">4+ Bathrooms</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="description">Description</label>
+                        <textarea id="description" required placeholder="Describe your space, amenities, and what makes it special..."></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Room Features</label>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <input type="checkbox" id="wifi" name="features" value="wifi">
+                                <label for="wifi">Free Wi-Fi</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="ac" name="features" value="ac">
+                                <label for="ac">Air Conditioning</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="tv" name="features" value="tv">
+                                <label for="tv">TV</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="kitchen" name="features" value="kitchen">
+                                <label for="kitchen">Kitchen</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="washer" name="features" value="washer">
+                                <label for="washer">Washer</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="parking" name="features" value="parking">
+                                <label for="parking">Free Parking</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="pool" name="features" value="pool">
+                                <label for="pool">Swimming Pool</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="gym" name="features" value="gym">
+                                <label for="gym">Gym</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="breakfast" name="features" value="breakfast">
+                                <label for="breakfast">Breakfast</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="workspace" name="features" value="workspace">
+                                <label for="workspace">Workspace</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="balcony" name="features" value="balcony">
+                                <label for="balcony">Balcony</label>
+                            </div>
+                            <div class="feature-item">
+                                <input type="checkbox" id="pets" name="features" value="pets">
+                                <label for="pets">Pets Allowed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="address">Full Address</label>
+                        <input type="text" id="address" required placeholder="Enter the full address of your property">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Room Photos</label>
+                        <div class="image-upload" id="image-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop images here or click to browse</p>
+                            <p><small>Upload at least one photo of your room (max 5 photos)</small></p>
+                            <input type="file" id="image-input" accept="image/*" multiple>
+                        </div>
+                        <div class="image-preview-container" id="image-preview-container"></div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn btn-primary">Submit Room</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Eldawla</h3>
+                <p>A community marketplace connecting travelers with local hosts offering unique places to stay throughout Egypt.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="offer-room.html">Offer a Room</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Cairo Street, Egypt</p>
+                <p><i class="fas fa-phone"></i> +20 123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> info@eldawla.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Eldawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            emailjs.init("user_your_emailjs_user_id");
+            
+            const loginRequired = document.getElementById('login-required');
+            const roomForm = document.getElementById('room-form');
+            
+            if (isLoggedIn()) {
+                loginRequired.style.display = 'none';
+                roomForm.style.display = 'grid';
+            } else {
+                loginRequired.style.display = 'block';
+                roomForm.style.display = 'none';
+            }
+            
+            const imageInput = document.getElementById('image-input');
+            const uploadContainer = document.getElementById('image-upload');
+            const previewContainer = document.getElementById('image-preview-container');
+            
+            imageInput.addEventListener('change', function(e) {
+                if (e.target.files) {
+                    const files = Array.from(e.target.files);
+                    const maxFiles = 5;
+                    
+                    if (files.length > maxFiles) {
+                        alert(`Please select a maximum of ${maxFiles} images.`);
+                        return;
+                    }
+                    
+                    previewContainer.innerHTML = '';
+                    
+                    files.forEach((file, index) => {
+                        if (!file.type.match('image.*')) {
+                            return;
+                        }
+                        
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const preview = document.createElement('div');
+                            preview.className = 'image-preview';
+                            preview.innerHTML = `
+                                <img src="${e.target.result}" alt="Room image ${index + 1}">
+                                <button type="button" class="remove-btn" data-index="${index}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            `;
+                            previewContainer.appendChild(preview);
+                            
+                            preview.querySelector('.remove-btn').addEventListener('click', function() {
+                                preview.remove();
+                            });
+                        };
+                        
+                        reader.readAsDataURL(file);
+                    });
+                }
+            });
+            
+            uploadContainer.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadContainer.style.borderColor = 'var(--primary-color)';
+                uploadContainer.style.backgroundColor = 'rgba(var(--primary-rgb), 0.05)';
+            });
+            
+            uploadContainer.addEventListener('dragleave', function() {
+                uploadContainer.style.borderColor = 'var(--border-color)';
+                uploadContainer.style.backgroundColor = '';
+            });
+            
+            uploadContainer.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadContainer.style.borderColor = 'var(--border-color)';
+                uploadContainer.style.backgroundColor = '';
+                
+                if (e.dataTransfer.files) {
+                    imageInput.files = e.dataTransfer.files;
+                    const event = new Event('change');
+                    imageInput.dispatchEvent(event);
+                }
+            });
+            
+            uploadContainer.addEventListener('click', function() {
+                imageInput.click();
+            });
+            
+            roomForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const roomName = document.getElementById('room-name').value;
+                const roomType = document.getElementById('room-type').value;
+                const location = document.getElementById('location').value;
+                const price = document.getElementById('price').value;
+                const capacity = document.getElementById('capacity').value;
+                const bedrooms = document.getElementById('bedrooms').value;
+                const bathrooms = document.getElementById('bathrooms').value;
+                const description = document.getElementById('description').value;
+                const address = document.getElementById('address').value;
+                
+                const features = [];
+                document.querySelectorAll('input[name="features"]:checked').forEach(checkbox => {
+                    features.push(checkbox.value);
+                });
+                
+                if (previewContainer.children.length === 0) {
+                    alert('Please upload at least one image of your room');
+                    return;
+                }
+                
+                const imageFiles = [];
+                document.querySelectorAll('.image-preview img').forEach(img => {
+                    imageFiles.push(img.src);
+                });
+                
+                roomForm.innerHTML = `
+                    <div style="text-align: center; padding: 30px;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 15px;">Saving Your Room...</h3>
+                        <p>Please wait while we process your submission.</p>
+                    </div>
+                `;
+                
+                const newRoom = {
+                    id: 'room_' + Date.now(),
+                    name: roomName,
+                    type: roomType,
+                    location: location,
+                    description: description,
+                    price: parseFloat(price),
+                    currency: "$",
+                    rating: 4.5,
+                    reviews: 0,
+                    maxGuests: parseInt(capacity),
+                    gallery: imageFiles.length > 0 ? imageFiles : [
+                    ],
+                    amenities: [
+                        {name: "Free Wi-Fi", icon: "fas fa-wifi"},
+                        {name: "Breakfast", icon: "fas fa-utensils"}
+                    ],
+                    features: [
+                        {name: bedrooms + " Bedroom(s)", icon: "fas fa-bed"},
+                        {name: bathrooms + " Bathroom(s)", icon: "fas fa-bath"},
+                        {name: capacity + " Guests", icon: "fas fa-user-friends"}
+                    ]
+                };
+                
+                if (features.includes('wifi')) newRoom.features.push({name: "Free Wi-Fi", icon: "fas fa-wifi"});
+                if (features.includes('ac')) newRoom.features.push({name: "Air Conditioning", icon: "fas fa-snowflake"});
+                if (features.includes('tv')) newRoom.features.push({name: "TV", icon: "fas fa-tv"});
+                if (features.includes('parking')) newRoom.features.push({name: "Free Parking", icon: "fas fa-parking"});
+                if (features.includes('pool')) newRoom.features.push({name: "Swimming Pool", icon: "fas fa-swimming-pool"});
+                
+                fetch('rooms.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const allRooms = data.rooms;
+                        
+                        allRooms.push(newRoom);
+                        
+                        localStorage.setItem('allRooms', JSON.stringify(allRooms));
+                        
+                        console.log('Room saved successfully:', newRoom);
+                        
+                        const user = getCurrentUser();
+                        const emailParams = {
+                            to_name: user.name,
+                            to_email: user.email,
+                            room_name: roomName,
+                            room_type: roomType,
+                            room_location: location,
+                            room_price: price
+                        };
+                        
+                        return emailjs.send('service_ficq1th', 'template_21qnue8', emailParams);
+                    })
+                    .then(function(response) {
+                        console.log('Email sent!', response.status, response.text);
+                        
+                        roomForm.innerHTML = `
+                            <div style="text-align: center; padding: 30px;">
+                                <i class="fas fa-check-circle success-color" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                                <h3 style="margin-bottom: 15px;">Room Added Successfully!</h3>
+                                <p>Your room has been added to our listings. You will receive a confirmation email shortly.</p>
+                                <div class="button-group" style="margin-top: 30px;">
+                                    <a href="rooms.html" class="btn btn-primary">View All Rooms</a>
+                                    <a href="offer-room-fixed.html" class="btn">Add Another Room</a>
+                                </div>
+                            </div>
+                        `;
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                        
+                        roomForm.innerHTML = `
+                            <div style="text-align: center; padding: 30px;">
+                                <i class="fas fa-check-circle success-color" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                                <h3 style="margin-bottom: 15px;">Room Added Successfully!</h3>
+                                <p>Your room has been added to our listings.</p>
+                                <p style="color: #dc3545;">Note: There was an issue sending the confirmation email.</p>
+                                <div class="button-group" style="margin-top: 30px;">
+                                    <a href="rooms.html" class="btn btn-primary">View All Rooms</a>
+                                    <a href="offer-room-fixed.html" class="btn">Add Another Room</a>
+                                </div>
+                            </div>
+                        `;
+                    });
+            });
+            
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem("theme");
+            
+            if (currentTheme === "dark" || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.getElementById("checkbox").checked = true;
+            }
+            
+            const themeSwitch = document.getElementById("checkbox");
+            themeSwitch.addEventListener("change", function(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "light");
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

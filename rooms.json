@@ -1,0 +1,204 @@
+{
+  "rooms": [
+    {
+      "id": "luxury-suite",
+      "name": "Luxury Suite",
+      "type": "suite",
+      "location": "Giza, Egypt",
+      "description": "Our Luxury Suite offers a spacious and elegant accommodation with a breathtaking view of the Pyramids. The suite features a king-size bed, a separate living area, a work desk, and a luxurious bathroom with both a shower and a bathtub. Perfect for business travelers or couples looking for a high-end stay, this suite provides the ultimate comfort and privacy. The large windows ensure plenty of natural light and spectacular views of the ancient wonders.",
+      "price": 250,
+      "currency": "$",
+      "rating": 4.8,
+      "reviews": 145,
+      "maxGuests": 3,
+      "image": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "amenities": [
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Breakfast", "icon": "fas fa-utensils"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "TV", "icon": "fas fa-tv"}
+      ],
+      "features": [
+        {"name": "King-size Bed", "icon": "fas fa-bed"},
+        {"name": "50 m²", "icon": "fas fa-ruler-combined"},
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Smart TV", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Bathtub", "icon": "fas fa-bath"},
+        {"name": "Breakfast", "icon": "fas fa-utensils"},
+        {"name": "Parking", "icon": "fas fa-parking"}
+      ]
+    },
+    {
+      "id": "family-suite",
+      "name": "Family Suite",
+      "type": "suite",
+      "location": "Luxor, Egypt",
+      "description": "Our spacious Family Suite is perfect for families visiting Egypt. With two bedrooms, a living area, and a fully equipped kitchenette, there's plenty of space for everyone. The main bedroom has a queen-size bed, while the second bedroom has two single beds. Enjoy views of the Nile River from your private balcony.",
+      "price": 320,
+      "currency": "$",
+      "rating": 4.6,
+      "reviews": 98,
+      "maxGuests": 4,
+      "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1562438668-bcf0ca6578f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "amenities": [
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Kitchen", "icon": "fas fa-utensils"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "TV", "icon": "fas fa-tv"}
+      ],
+      "features": [
+        {"name": "Queen + 2 Singles", "icon": "fas fa-bed"},
+        {"name": "75 m²", "icon": "fas fa-ruler-combined"},
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Smart TV", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Kitchenette", "icon": "fas fa-blender"},
+        {"name": "Balcony", "icon": "fas fa-door-open"},
+        {"name": "Laundry", "icon": "fas fa-tshirt"}
+      ]
+    },
+    {
+      "id": "standard-room",
+      "name": "Standard Room",
+      "type": "standard",
+      "location": "Cairo, Egypt",
+      "description": "Our comfortable Standard Room offers everything you need for a pleasant stay in Cairo. The room features a queen-size bed, a work desk, and a modern bathroom with a shower. Perfect for solo travelers or couples on a budget.",
+      "price": 120,
+      "currency": "$",
+      "rating": 4.2,
+      "reviews": 210,
+      "maxGuests": 2,
+      "image": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "amenities": [
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Breakfast", "icon": "fas fa-utensils"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"}
+      ],
+      "features": [
+        {"name": "Queen-size Bed", "icon": "fas fa-bed"},
+        {"name": "25 m²", "icon": "fas fa-ruler-combined"},
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "TV", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Shower", "icon": "fas fa-shower"},
+        {"name": "Breakfast Option", "icon": "fas fa-utensils"}
+      ]
+    },
+    {
+      "id": "budget-room",
+      "name": "Budget Room",
+      "type": "budget",
+      "location": "Alexandria, Egypt",
+      "description": "Our Budget Room is perfect for travelers watching their expenses without compromising on comfort. The room includes a comfortable double bed, a small work area, and a private bathroom with shower. Ideal for short stays or solo travelers.",
+      "price": 75,
+      "currency": "$",
+      "rating": 3.9,
+      "reviews": 182,
+      "maxGuests": 2,
+      "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1501876725168-00c445821c9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "amenities": [
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "TV", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"}
+      ],
+      "features": [
+        {"name": "Double Bed", "icon": "fas fa-bed"},
+        {"name": "18 m²", "icon": "fas fa-ruler-combined"},
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "TV", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Shower", "icon": "fas fa-shower"}
+      ]
+    },
+    {
+      "id": "deluxe-suite",
+      "name": "Deluxe Suite",
+      "type": "suite",
+      "location": "Sharm El Sheikh, Egypt",
+      "description": "Experience luxury by the Red Sea in our Deluxe Suite. This premium accommodation features a king-size bed, separate living area with sofa bed, and a spacious bathroom with Jacuzzi tub. Enjoy breathtaking views of the sea from your private balcony.",
+      "price": 280,
+      "currency": "$",
+      "rating": 4.7,
+      "reviews": 124,
+      "maxGuests": 3,
+      "image": "https://images.unsplash.com/photo-1621293954908-907159247fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1621293954908-907159247fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1615874959474-d609969a20ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "amenities": [
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Breakfast", "icon": "fas fa-utensils"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Sea View", "icon": "fas fa-water"}
+      ],
+      "features": [
+        {"name": "King-size Bed", "icon": "fas fa-bed"},
+        {"name": "55 m²", "icon": "fas fa-ruler-combined"},
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Smart TV", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Jacuzzi", "icon": "fas fa-hot-tub"},
+        {"name": "Breakfast", "icon": "fas fa-utensils"},
+        {"name": "Sea View", "icon": "fas fa-water"}
+      ]
+    },
+    {
+      "id": "penthouse-suite",
+      "name": "Penthouse Suite",
+      "type": "suite",
+      "location": "Cairo, Egypt",
+      "description": "The ultimate in luxury, our Penthouse Suite offers panoramic views of Cairo and the Nile River. This exclusive accommodation features a master bedroom with king-size bed, a second bedroom with queen-size bed, a full kitchen, dining area, and spacious living room. The large terrace is perfect for entertaining or relaxing under the stars.",
+      "price": 450,
+      "currency": "$",
+      "rating": 4.9,
+      "reviews": 87,
+      "maxGuests": 4,
+      "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1560185007-5f0bb1866cab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "amenities": [
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Full Kitchen", "icon": "fas fa-utensils"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Terrace", "icon": "fas fa-umbrella-beach"}
+      ],
+      "features": [
+        {"name": "King + Queen Beds", "icon": "fas fa-bed"},
+        {"name": "120 m²", "icon": "fas fa-ruler-combined"},
+        {"name": "Free Wi-Fi", "icon": "fas fa-wifi"},
+        {"name": "Smart TVs", "icon": "fas fa-tv"},
+        {"name": "Air Conditioning", "icon": "fas fa-snowflake"},
+        {"name": "Full Kitchen", "icon": "fas fa-utensils"},
+        {"name": "Private Terrace", "icon": "fas fa-umbrella-beach"},
+        {"name": "Butler Service", "icon": "fas fa-concierge-bell"},
+        {"name": "Laundry Service", "icon": "fas fa-tshirt"}
+      ]
+    }
+  ]
+} 

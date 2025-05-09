@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Eldawla</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .auth-container {
+            max-width: 500px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        
+        .auth-form {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-header h1 {
+            color: var(--heading-color);
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--text-light);
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .divider span {
+            padding: 0 10px;
+        }
+        
+        .social-signup {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--background-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .google {
+            color: #DB4437;
+        }
+        
+        .facebook {
+            color: #4267B2;
+        }
+        
+        .twitter {
+            color: #1DA1F2;
+        }
+        
+        .terms-privacy {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .terms-privacy a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .terms-privacy a:hover {
+            text-decoration: underline;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-color);
+        }
+        
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group input {
+            margin-top: 4px;
+        }
+        
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eldawla</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="history.html">History</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn">Login</a>
+                <a href="signup.html" class="btn btn-primary active">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <div class="auth-form">
+                <div class="auth-header">
+                    <h1>Create Account</h1>
+                    <p>Join our community of travelers and hosts</p>
+                </div>
+                
+                <form id="signup-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" required>
+                    </div>
+                    
+
+                    
+                    <button type="submit" class="btn btn-primary submit-btn">Create Account</button>
+                </form>
+                
+
+                
+                <div class="login-link">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Eldawla</h3>
+                <p>A community marketplace connecting travelers with local hosts offering unique places to stay throughout Egypt.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Browse Rooms</a></li>
+                    <li><a href="become-host.html">Become a Host</a></li>
+                    <li><a href="history.html">History</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Email: hosts@eldawla.com</p>
+                <p>Phone: +20 (102) 123-4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Eldawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="theme-switch-wrapper">
+        <span class="theme-icon"><i class="fas fa-sun"></i></span>
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox">
+            <div class="slider"></div>
+        </label>
+        <span class="theme-icon"><i class="fas fa-moon"></i></span>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem("theme");
+            
+            if (currentTheme === "dark" || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.getElementById("checkbox").checked = true;
+            }
+            
+            const themeSwitch = document.getElementById("checkbox");
+            themeSwitch.addEventListener("change", function(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "light");
+                    localStorage.setItem("theme", "light");
+                }
+            });
+            
+
+            console.log('Login state:', isLoggedIn() ? 'Logged in' : 'Not logged in');
+            
+
+            const authHeader = document.querySelector('.auth-header');
+            if (isLoggedIn()) {
+                const currentUser = getCurrentUser();
+                const userInfo = document.createElement('div');
+                userInfo.className = 'user-info';
+                userInfo.innerHTML = `<p>You are logged in as <strong>${currentUser.name}</strong></p>`;
+                userInfo.style.marginBottom = '10px';
+                
+                const logoutButton = document.createElement('button');
+                logoutButton.textContent = 'Logout';
+                logoutButton.className = 'btn btn-primary';
+                logoutButton.style.marginBottom = '15px';
+                logoutButton.addEventListener('click', function() {
+                    logoutUser();
+                    location.reload();
+                });
+                
+                authHeader.appendChild(userInfo);
+                authHeader.appendChild(logoutButton);
+                
+
+                document.getElementById('signup-form').style.display = 'none';
+            }
+            
+
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
+            
+
+            document.getElementById('signup-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const email = document.getElementById('email').value;
+                const passwordValue = password.value;
+                const confirmPasswordValue = confirmPassword.value;
+                
+
+                if (passwordValue !== confirmPasswordValue) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+
+                const userData = {
+                    name: `${firstName} ${lastName}`,
+                    email: email,
+                    password: passwordValue
+                };
+                
+                try {
+
+                    const response = await signupUser(userData);
+                    
+
+                    alert(`Account created successfully! Welcome ${firstName}!`);
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    alert(error.message || 'Signup failed. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

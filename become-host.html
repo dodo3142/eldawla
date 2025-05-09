@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Host - Eldawla</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .host-hero {
+            min-height: 500px;
+        }
+        
+        .host-benefits {
+            padding: 60px 20px;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 25px;
+        }
+        
+        .benefit-content h3 {
+            margin-bottom: 15px;
+            color: var(--heading-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefit-content h3 i {
+            color: var(--primary-color);
+        }
+        
+        .benefit-content p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .host-steps {
+            background-color: var(--light-bg);
+            padding: 60px 20px;
+        }
+        
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .step {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 10px;
+            color: var(--heading-color);
+        }
+        
+        .step-content p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .host-form-section {
+            padding: 60px 20px;
+            background-color: var(--card-bg);
+        }
+        
+        .host-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        .host-form-container h2 {
+            margin-bottom: 30px;
+            color: var(--heading-color);
+            text-align: center;
+        }
+        
+        .form-fields {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .form-fields .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-fields label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-fields input,
+        .form-fields textarea,
+        .form-fields select {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+        
+        .form-fields textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-fields button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .step {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .host-form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eldawla</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="history.html">History</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero host-hero">
+            <div class="hero-content">
+                <h1>Share Your Space, Earn Extra Income</h1>
+                <p>Join our community of hosts and welcome guests from around the world</p>
+                <a href="#host-form" class="btn btn-primary">Start Hosting</a>
+            </div>
+        </section>
+
+        <section class="host-benefits">
+            <h2>Why Host on Eldawla?</h2>
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <h3><i class="fas fa-coins"></i> Earn Extra Income</h3>
+                        <p>Turn your extra space into a source of income. Many hosts earn enough to cover their rent or mortgage payments.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <h3><i class="fas fa-users"></i> Meet People from Around the World</h3>
+                        <p>Connect with travelers, share your local knowledge, and create lasting relationships with guests.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <h3><i class="fas fa-calendar-alt"></i> Host on Your Schedule</h3>
+                        <p>You decide when and how often you host. Block dates when your space isn't available or when you need a break.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="host-steps">
+            <h2>How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Create Your Listing</h3>
+                        <p>Fill out our simple form with details about your space, add photos, and set your price. You'll also need to include any special features or house rules.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Welcome Your Guests</h3>
+                        <p>Once your listing is live, guests can book your space. Provide them with check-in details and be available to answer any questions they might have.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Paid</h3>
+                        <p>You'll receive payment shortly after your guests check in. Our secure payment system ensures you get paid on time, every time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="host-form" class="host-form-section">
+            <div class="host-form-container">
+                <h2>Ready to Become a Host?</h2>
+                <form class="form-fields">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type" required>
+                            <option value="">Select Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                            <option value="room">Private Room</option>
+                            <option value="unique">Unique Space</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Property Location</label>
+                        <input type="text" id="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Brief Description</label>
+                        <textarea id="description" placeholder="Tell us a bit about your space..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Eldawla</h3>
+                <p>A community marketplace connecting travelers with local hosts offering unique places to stay throughout Egypt.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Browse Listings</a></li>
+                    <li><a href="become-host.html">Become a Host</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Email: hosts@eldawla.com</p>
+                <p>Phone: +20 (102) 123-4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Eldawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="theme-switch-wrapper">
+        <span class="theme-icon"><i class="fas fa-sun"></i></span>
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox">
+            <div class="slider"></div>
+        </label>
+        <span class="theme-icon"><i class="fas fa-moon"></i></span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hostForm = document.querySelector('.form-fields');
+            
+            hostForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const propertyType = document.getElementById('property-type').value;
+                const location = document.getElementById('location').value;
+                const description = document.getElementById('description').value;
+                
+                if (name && email && phone && propertyType && location) {
+                    
+                    hostForm.innerHTML = `
+                        <div style="text-align: center; padding: 30px;">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                            <h3 style="margin-bottom: 15px;">Thank You, ${name}!</h3>
+                            <p>We've received your application to become a host on Eldawla. Our team will review your information and get back to you within 2 business days at ${email}.</p>
+                        </div>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

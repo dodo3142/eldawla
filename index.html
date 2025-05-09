@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldawla - Find Spaces from Local Hosts</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="auth.js"></script>
+    <script src="auth-ui.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eldawla</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="history.html">History</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find Your Next Stay with Local Hosts</h1>
+                <p>Discover unique spaces in Egypt, from cozy apartments to luxury villas</p>
+                <a href="rooms.html" class="btn btn-primary">Browse Listings</a>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <h2>Find the Perfect Place</h2>
+                <form class="search-form">
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="cairo">Cairo</option>
+                            <option value="giza">Giza</option>
+                            <option value="luxor">Luxor</option>
+                            <option value="alexandria">Alexandria</option>
+                            <option value="sharm">Sharm El Sheikh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="check-in">Check In</label>
+                        <input type="date" id="check-in">
+                    </div>
+                    <div class="form-group">
+                        <label for="check-out">Check Out</label>
+                        <input type="date" id="check-out">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Guests</label>
+                        <select id="guests">
+                            <option value="1">1 Adult</option>
+                            <option value="2">2 Adults</option>
+                            <option value="3">3 Adults</option>
+                            <option value="4">4 Adults</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="popular-rooms">
+            <h2>Featured Listings</h2>
+            <div class="rooms-container" id="featured-rooms">
+                
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading featured listings...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Why Choose Eldawla</h2>
+            <div class="features-container">
+                <div class="feature">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Connect with Local Hosts</h3>
+                    <p>Find spaces owned by locals who can share the best tips about the area and culture.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-home"></i>
+                    <h3>Unique Places</h3>
+                    <p>Discover one-of-a-kind stays with authentic character that hotels simply can't match.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Direct Booking</h3>
+                    <p>Book directly with hosts without hidden fees or commissions, giving you the best value.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-comments"></i>
+                    <h3>Community Reviews</h3>
+                    <p>Make informed decisions with honest reviews from fellow travelers who've stayed with hosts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="host-cta">
+            <div class="host-cta-content">
+                <h2>Have a Space to Share?</h2>
+                <p>Join our community of hosts and earn extra income by sharing your space with travelers from around the world.</p>
+                <a href="become-host.html" class="btn btn-primary">Become a Host</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Eldawla</h3>
+                <p>A community marketplace connecting travelers with local hosts offering unique places to stay throughout Egypt.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Browse Rooms</a></li>
+                    <li><a href="become-host.html">Become a Host</a></li>
+                    <li><a href="history.html">History</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Email: hosts@eldawla.com</p>
+                <p>Phone: +20 (102) 123-4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Eldawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="theme-switch-wrapper">
+        <span class="theme-icon"><i class="fas fa-sun"></i></span>
+        <label class="theme-switch">
+            <input type="checkbox" id="checkbox">
+            <div class="slider"></div>
+        </label>
+        <span class="theme-icon"><i class="fas fa-moon"></i></span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const checkInInput = document.getElementById('check-in');
+            const checkOutInput = document.getElementById('check-out');
+            
+            checkInInput.min = today.toISOString().split('T')[0];
+            checkOutInput.min = tomorrow.toISOString().split('T')[0];
+            
+
+            checkInInput.addEventListener('change', function() {
+                const newMin = new Date(this.value);
+                newMin.setDate(newMin.getDate() + 1);
+                checkOutInput.min = newMin.toISOString().split('T')[0];
+                
+
+                if (new Date(checkOutInput.value) <= new Date(this.value)) {
+                    checkOutInput.value = newMin.toISOString().split('T')[0];
+                }
+            });
+            
+
+            const featuredRoomsContainer = document.getElementById('featured-rooms');
+            
+
+                .then(response => response.json())
+                .then(data => {
+
+                    const featuredRooms = data.rooms
+                        .sort((a, b) => b.rating - a.rating)
+                        .slice(0, 3);
+                    
+                    featuredRoomsContainer.innerHTML = '';
+                    
+                    featuredRooms.forEach(room => {
+                        const roomCard = createFeaturedRoomCard(room);
+                        featuredRoomsContainer.appendChild(roomCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading rooms:', error);
+                    featuredRoomsContainer.innerHTML = '<p>Error loading featured listings. Please try again later.</p>';
+                });
+            
+            document.querySelector('.search-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const location = document.getElementById('location').value;
+                const checkIn = document.getElementById('check-in').value;
+                const checkOut = document.getElementById('check-out').value;
+                const guests = document.getElementById('guests').value;
+                
+                const searchParams = {
+                    location: location,
+                    checkIn: checkIn,
+                    checkOut: checkOut,
+                    guests: guests
+                };
+                
+                localStorage.setItem('searchParams', JSON.stringify(searchParams));
+                
+                window.location.href = 'rooms.html';
+            });
+            
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem("theme");
+            
+            if (currentTheme === "dark" || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.getElementById("checkbox").checked = true;
+            }
+            
+            const themeSwitch = document.getElementById("checkbox");
+            themeSwitch.addEventListener("change", function(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "light");
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        });
+
+        function createFeaturedRoomCard(room) {
+
+            let amenitiesHTML = '';
+            const displayedAmenities = room.amenities.slice(0, 2);
+            displayedAmenities.forEach(amenity => {
+                amenitiesHTML += `<span><i class="${amenity.icon}"></i> ${amenity.name}</span>`;
+            });
+            
+
+            let ratingHTML = '';
+            const fullStars = Math.floor(room.rating);
+            const hasHalfStar = room.rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                ratingHTML += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                ratingHTML += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const card = document.createElement('div');
+            card.className = 'room-card';
+            card.innerHTML = `
+                <img src="${room.image}" alt="${room.name}">
+                <div class="room-info">
+                    <h3>${room.name}</h3>
+                    <p class="room-location"><i class="fas fa-map-marker-alt"></i> ${room.location}</p>
+                    <div class="stars">${ratingHTML}</div>
+                    <p class="price">${room.currency}${room.price}<span>/night</span></p>
+                    <div class="room-amenities">
+                        ${amenitiesHTML}
+                    </div>
+                    <a href="book-room.html?id=${room.id}" class="btn">View Details</a>
+                </div>
+            `;
+            
+            return card;
+        }
+    </script>
+</body>
+</html> 
