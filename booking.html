@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Room - Eldawla</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <script src="auth.js"></script>
     <script src="auth-ui.js"></script>
     <script src="bookings.js"></script>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="email-service.js"></script>
     <style>
         .booking-container {
@@ -231,7 +233,6 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="rooms.html">Rooms</a></li>
                 <li><a href="booking.html" class="active">Book Now</a></li>
-                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="auth-buttons">
                 <a href="login.html" class="btn">Login</a>
@@ -401,7 +402,6 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="rooms.html">Browse Listings</a></li>
                     <li><a href="become-host.html">Become a Host</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -465,10 +465,16 @@
                     
                     roomData = room;
                     renderBookingDetails();
+                    
+                    // Connect form submission to handler
+                    document.getElementById('booking-form').addEventListener('submit', handleFormSubmit);
                 })
                 .catch(error => {
                     console.error('Error loading room data:', error);
                     renderBookingDetails(true);
+                    
+                    // Connect form submission to handler even if room data fails to load
+                    document.getElementById('booking-form').addEventListener('submit', handleFormSubmit);
                 });
                 
             function renderBookingDetails(useBasicInfo = false) {

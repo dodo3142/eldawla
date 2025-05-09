@@ -8,35 +8,37 @@ function saveBooking(bookingData) {
         return false;
     }
     
-    
+    // Generate a booking ID if not provided
     if (!bookingData.id) {
         bookingData.id = 'BK' + Math.floor(100000 + Math.random() * 900000);
     }
     
-    
+    // Add booking date if not provided
     if (!bookingData.bookingDate) {
         bookingData.bookingDate = new Date().toISOString().split('T')[0];
     }
     
-    
+    // Set default status if not provided
     if (!bookingData.status) {
         bookingData.status = 'confirmed';
     }
     
-    
+    // Get existing bookings
     const bookings = getBookings();
     
-    
+    // Add new booking
     bookings.push(bookingData);
     
-    
+    // Save to localStorage with user-specific key
     const bookingsKey = `bookings_${user.id}`;
     localStorage.setItem(bookingsKey, JSON.stringify(bookings));
     
+    // Log for debugging
     console.log('Booking saved:', bookingData);
     console.log('All bookings:', bookings);
     
-    return true;
+    // Return the booking ID for reference
+    return bookingData.id;
 }
 
 
