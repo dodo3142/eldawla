@@ -1,5 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 
 
@@ -91,6 +93,51 @@ app.post('/api/login', async (req, res) => {
       message: 'Login successful'
     });
   } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+
+
+
+
+// New endpoint to add a room
+app.post('/api/rooms', (req, res) => {
+  try {
+    const roomsFilePath = path.join(__dirname, 'rooms.json');
+    let roomsData;
+    try {
+      const fileContent = fs.readFileSync(roomsFilePath, 'utf8');
+      roomsData = JSON.parse(fileContent);
+    } catch (error) {
+      roomsData = { rooms: [] };
+    }   
+    roomsData.rooms.push(req.body);
+    
+    fs.writeFileSync(roomsFilePath, JSON.stringify(roomsData, null, 2), 'utf8');
+    
+    res.status(201).json({ 
+      message: 'Room added successfully',
+      room: req.body
+    });
+  } catch (error) {
+    console.error('Error adding room:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Read endpoint for rooms
+app.get('/api/rooms', (req, res) => {
+  try {
+    const roomsFilePath = path.join(__dirname, 'rooms.json');
+    const fileContent = fs.readFileSync(roomsFilePath, 'utf8');
+    const roomsData = JSON.parse(fileContent);
+    
+    res.json(roomsData);
+  } catch (error) {
+    console.error('Error reading rooms:', error);
     res.status(500).json({ message: error.message });
   }
 });
