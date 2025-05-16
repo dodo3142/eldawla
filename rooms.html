@@ -276,9 +276,9 @@
         <span class="theme-icon"><i class="fas fa-moon"></i></span>
     </div>
 
-    <!-- Google Maps API -->
+
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-    <!-- Font Awesome is already included in the head section -->
+    
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -431,9 +431,7 @@
             return card;
         }
         
-        // Initialize Google Maps
         function initMap() {
-            // Center the map on Egypt
             const egyptCenter = { lat: 26.8206, lng: 30.8025 };
             const map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 6,
@@ -458,7 +456,6 @@
                 ]
             });
             
-            // Add markers for each room location
             const locationCoordinates = {
                 "Cairo, Egypt": { lat: 30.0444, lng: 31.2357 },
                 "Giza, Egypt": { lat: 29.9773, lng: 31.1325 },
@@ -467,7 +464,6 @@
                 "Sharm El Sheikh, Egypt": { lat: 27.9158, lng: 34.3300 }
             };
             
-            // When rooms data is loaded, add markers
             fetch('rooms.json')
                 .then(response => response.json())
                 .then(data => {
@@ -502,7 +498,6 @@
                         }
                     });
                     
-                    // Fit map to show all markers
                     if (markers.length > 0) {
                         const bounds = new google.maps.LatLngBounds();
                         markers.forEach(marker => bounds.extend(marker.getPosition()));

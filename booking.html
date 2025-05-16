@@ -466,14 +466,12 @@
                     roomData = room;
                     renderBookingDetails();
                     
-                    // Connect form submission to handler
                     document.getElementById('booking-form').addEventListener('submit', handleFormSubmit);
                 })
                 .catch(error => {
                     console.error('Error loading room data:', error);
                     renderBookingDetails(true);
                     
-                    // Connect form submission to handler even if room data fails to load
                     document.getElementById('booking-form').addEventListener('submit', handleFormSubmit);
                 });
                 

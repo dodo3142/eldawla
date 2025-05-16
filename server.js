@@ -103,7 +103,7 @@ app.post('/api/login', async (req, res) => {
 
 
 
-// New endpoint to add a room
+
 app.post('/api/rooms', (req, res) => {
   try {
     const roomsFilePath = path.join(__dirname, 'rooms.json');
@@ -128,7 +128,7 @@ app.post('/api/rooms', (req, res) => {
   }
 });
 
-// Read endpoint for rooms
+
 app.get('/api/rooms', (req, res) => {
   try {
     const roomsFilePath = path.join(__dirname, 'rooms.json');

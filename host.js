@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFormSubmission();
 });
 
-// check if the user is logged in
+
 function checkAuthStatus() {
     const authRequired = document.getElementById('auth-required');
     const hostFormWrapper = document.getElementById('host-form-wrapper');
@@ -22,7 +22,7 @@ function checkAuthStatus() {
     }
 }
 
-// initialize theme switch functionality
+
 function initializeThemeSwitch() {
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
     const currentTheme = localStorage.getItem("theme");
@@ -44,7 +44,7 @@ function initializeThemeSwitch() {
     });
 }
 
-// setup form submission handler
+
 function setupFormSubmission() {
     const hostForm = document.getElementById('host-form');
     
@@ -57,7 +57,7 @@ function setupFormSubmission() {
     });
 }
 
-// collect form data and format it for submission
+
 function collectFormData() {
 
     const roomName = document.getElementById('room-name').value;
@@ -116,7 +116,7 @@ function collectFormData() {
     
     const roomId = generateRoomId(roomName);
     
-    // create amenities array with icons
+ 
     const amenitiesArray = [];
     if (selectedAmenities.includes('wifi')) {
         amenitiesArray.push({name: "Free Wi-Fi", icon: "fas fa-wifi"});
@@ -142,7 +142,6 @@ function collectFormData() {
         {name: `${roomSize} m²`, icon: "fas fa-ruler-combined"},
     ];
     
-    // add amenities to features 
     if (selectedAmenities.includes('wifi')) {
         featuresArray.push({name: "Free Wi-Fi", icon: "fas fa-wifi"});
     }
@@ -194,7 +193,7 @@ function collectFormData() {
         description: description,
         price: price,
         currency: "$",
-        rating: 0.0, // default initial rating
+        rating: 0.0, 
         reviews: 0,  
         maxGuests: maxGuests,
         image: imageUrl,
@@ -206,7 +205,7 @@ function collectFormData() {
     return roomData;
 }
 
-// unique room ID based on the room name
+
 function generateRoomId(roomName) {
     let id = roomName.toLowerCase().replace(/\s+/g, '-');
     id = id.replace(/[^a-z0-9-]/g, '');
@@ -214,7 +213,7 @@ function generateRoomId(roomName) {
     return id;
 }
 
-// submit the room data 
+
 function submitRoomData(roomData) {
     fetch('/api/rooms', {
         method: 'POST',
@@ -239,7 +238,7 @@ function submitRoomData(roomData) {
     });
 }
 
-// Show success message
+
 function showSuccessMessage() {
     const successMessage = document.getElementById('success-message');
     const hostForm = document.getElementById('host-form');
@@ -250,7 +249,7 @@ function showSuccessMessage() {
     successMessage.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Show error message
+
 function showErrorMessage(message) {
     const errorMessage = document.getElementById('error-message');
     const errorText = document.getElementById('error-text');
